@@ -7,8 +7,8 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/nextcloud/config:/config
-      - /path/to/data:/data
+      - ./config:/config
+      - ./data:/data
     ports:
       - 443:443
     restart: unless-stopped
