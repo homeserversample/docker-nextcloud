@@ -10,5 +10,5 @@ services:
       - ./config:/config
       - ./data:/data
     ports:
-      - 443:443
+      - 10443:443
     restart: unless-stopped
