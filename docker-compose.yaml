@@ -1,16 +1,7 @@
-networks: 
-  # network created via docker cmd line, 
-  # and all other containers are also on it
-  proxy-network:
-    name: proxy-network
-
 services:
   nextcloud:
     image: lscr.io/linuxserver/nextcloud:latest
     container_name: nextcloud
-    networks:
-      # caddy is in the network with the other containers
-      - proxy-network
     environment:
       - PUID=1001
       - PGID=1001
@@ -18,4 +9,10 @@ services:
     volumes:
       - ./config:/config
       - ./data:/data
+    ports:
+      - 443:443
     restart: unless-stopped
+    labels: 
+      tsdproxy.enable: true
+      tsdproxy.scheme: https
+      tsdproxy.tlsvalidate: false
